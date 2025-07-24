@@ -1,6 +1,5 @@
 from pydantic import BaseModel, EmailStr
-from typing import List, Optional
-
+from typing import Optional
 
 class UserBase(BaseModel):
     email: EmailStr
@@ -16,12 +15,4 @@ class UserOut(UserBase):
     id: int
 
     class Config:
-        from_attributes = True  # For SQLAlchemy ORM mode
-
-
-class UserWithRelations(UserOut):
-    contents: Optional[List["ContentOut"]] = []  # Forward reference (string)
-
-from pydantic import BaseModel
-
-UserWithRelations.model_rebuild()
+        from_attributes = True
