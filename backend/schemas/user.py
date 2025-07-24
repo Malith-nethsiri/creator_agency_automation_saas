@@ -1,42 +1,30 @@
-from pydantic import BaseModel, EmailStr, ConfigDict
-from typing import Optional, List
-from datetime import datetime
-from enum import Enum
+from pydantic import BaseModel, EmailStr
+from typing import List, Optional
 
-# Import ReportOut, SubscriptionOut, and ContentOut if they are defined in other modules
-from .content import ContentOut
-from .report import ReportOut
-from .subscription import SubscriptionOut
 
-class UserRole(str, Enum):
-    CREATOR = "creator"
-    AGENCY = "agency"
-    ADMIN = "admin"
-
-class UserCreate(BaseModel):
+class UserBase(BaseModel):
     email: EmailStr
+    full_name: Optional[str] = None
+    is_active: bool = True
+
+
+class UserCreate(UserBase):
     password: str
-    role: UserRole
 
-class UserOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
+class UserOut(UserBase):
     id: int
-class UserOutWithRelations(UserOut):
-    contents: List['ContentOut'] = []
-    agency_reports: List['ReportOut'] = []
-    subscriptions: List['SubscriptionOut'] = []
-    contents: List['ContentOut'] = []
-    agency_reports: List['ReportOut'] = []
-class Token(BaseModel):
-    access_token: str
-    token_type: str
 
-# If using forward references, update them after all classes are defined
-UserOutWithRelations.update_forward_refs()
-class Token(BaseModel):
-    access_token: str
-    token_type: str
+    class Config:
+        from_attributes = True  # For SQLAlchemy ORM mode
 
-class TokenData(BaseModel):
-    username: Optional[str] = None
+
+from .content import ContentOut  # Make sure this import path is correct
+
+class UserWithRelations(UserOut):
+    contents: Optional[List[ContentOut]] = []  # Use imported ContentOut directly
+
+from pydantic import BaseModel
+
+UserWithRelations.model_rebuild()
+

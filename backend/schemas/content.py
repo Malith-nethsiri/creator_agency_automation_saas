@@ -1,35 +1,21 @@
-from pydantic import BaseModel, ConfigDict
-from typing import List
-from datetime import datetime
-from .user import UserOut  # Import UserOut from the appropriate module
-from .report import ReportOut  # Import ReportOut from the appropriate module
+from __future__ import annotations
+from pydantic import BaseModel
+from typing import Optional
+from .user import UserOut  # Adjust the import path as needed
 
-class ContentCreate(BaseModel):
+class ContentBase(BaseModel):
     title: str
-    file_url: str
-    creator_id: int
+    description: Optional[str] = None
+    description: Optional[str] = None
 
-class ContentOut(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
 
+class ContentOut(ContentBase):
     id: int
-    title: str
-    file_url: str
-    creator_id: int
-    created_at: datetime
+    user: Optional["UserOut"]  # Forward reference to avoid circular import
 
-class ContentOutWithCreator(ContentOut):
-    creator: 'UserOut'
+    class Config:
+        from_attributes = True
 
-class ContentOutWithReports(ContentOut):
-    reports: List['ReportOut'] = []
+from pydantic import BaseModel
 
-class ContentOutFull(ContentOut):
-    creator: 'UserOut'
-    reports: List['ReportOut'] = []
-class ContentOutWithReports(ContentOut):
-    reports: List['ReportOut'] = []
-
-class ContentOutFull(ContentOut):
-    creator: 'UserOut'
-    reports: List['ReportOut'] = []
+ContentOut.model_rebuild()
