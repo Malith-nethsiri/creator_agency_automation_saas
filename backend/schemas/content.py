@@ -5,6 +5,12 @@ class ContentBase(BaseModel):
     title: str
     description: Optional[str] = None
 
+class ContentCreate(ContentBase):
+    pass
+
+class ContentUpdate(ContentBase):
+    title: Optional[str] = None
+    description: Optional[str] = None
 
 class ContentOut(ContentBase):
     id: int
