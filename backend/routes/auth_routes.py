@@ -6,6 +6,8 @@ from database import get_db
 from services.user_service import UserService
 from schemas.relations import UserWithRelations
 from schemas.auth import LoginRequest, TokenResponse, RefreshTokenRequest, UserProfile
+from schemas.user import UserOut
+from schemas.user import UserCreate
 from core.security import (
     create_access_token,
     create_refresh_token,
