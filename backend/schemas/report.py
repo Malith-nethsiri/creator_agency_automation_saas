@@ -1,5 +1,7 @@
 from pydantic import BaseModel, ConfigDict
 from datetime import datetime
+from .user import UserOut  # Adjust the import path as needed
+from .content import ContentOut  # Adjust the import path as needed
 
 class ReportCreate(BaseModel):
     name: str

@@ -1,8 +1,8 @@
 import smtplib
 import ssl
-from email.mime.text import MimeText
+from email.mime.text import MIMEText
 from email.mime.multipart import MimeMultipart
-from typing import List, Optional
+from typing import Optional
 from datetime import datetime, timedelta
 from core.config import settings
 import logging
@@ -36,11 +36,11 @@ class EmailService:
 
             # Add text content if provided
             if text_content:
-                text_part = MimeText(text_content, "plain")
+                text_part = MIMEText(text_content, "plain")
                 message.attach(text_part)
 
             # Add HTML content
-            html_part = MimeText(html_content, "html")
+            html_part = MIMEText(html_content, "html")
             message.attach(html_part)
 
             # Create SMTP session

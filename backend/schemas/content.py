@@ -1,6 +1,8 @@
 from pydantic import BaseModel, ConfigDict
 from typing import List
 from datetime import datetime
+from .user import UserOut  # Import UserOut from the appropriate module
+from .report import ReportOut  # Import ReportOut from the appropriate module
 
 class ContentCreate(BaseModel):
     title: str

@@ -24,7 +24,10 @@ class SubscriptionOut(BaseModel):
 class SubscriptionUpdate(BaseModel):
     status: Optional[SubscriptionStatus] = None
 
+from .user import UserOut  # Adjust the import path as needed
+from .subscription_plan import SubscriptionPlanOut  # Adjust the import path as needed
+
 # For relationships
 class SubscriptionOutWithRelations(SubscriptionOut):
-    user: 'UserOut'
-    plan: 'SubscriptionPlanOut'
+    user: UserOut
+    plan: SubscriptionPlanOut
