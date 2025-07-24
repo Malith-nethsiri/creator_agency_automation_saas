@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 from fastapi import HTTPException, status, BackgroundTasks
 from models.user import User, UserRole
+from schemas.user import UserCreate
 from schemas.relations import UserWithRelations
 from core.security import get_password_hash, verify_password
 from services.base import BaseService
