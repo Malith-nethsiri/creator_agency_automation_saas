@@ -1,7 +1,7 @@
 import smtplib
 import ssl
 from email.mime.text import MIMEText
-from email.mime.multipart import MimeMultipart
+from email.mime.multipart import MIMEMultipart
 from typing import Optional
 from datetime import datetime, timedelta
 from core.config import settings
@@ -29,7 +29,7 @@ class EmailService:
         """Send email using SMTP configuration"""
         try:
             # Create message
-            message = MimeMultipart("alternative")
+            message = MIMEMultipart("alternative")
             message["Subject"] = subject
             message["From"] = f"{self.from_name} <{self.from_email}>"
             message["To"] = to_email
