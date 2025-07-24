@@ -1,7 +1,7 @@
 """Initial DB models
 
 Revision ID: 83ba08c75991
-Revises: 
+Revises:
 Create Date: 2025-07-24 13:49:23.824093
 
 """
