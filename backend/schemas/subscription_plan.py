@@ -17,5 +17,7 @@ class SubscriptionPlanOut(BaseModel):
     features: Optional[str] = None
     created_at: datetime
 
+from .subscription import SubscriptionOut  # Adjust the import path as needed
+
 class SubscriptionPlanOutWithSubscriptions(SubscriptionPlanOut):
-    subscriptions: List['SubscriptionOut'] = []
+    subscriptions: List[SubscriptionOut] = []
