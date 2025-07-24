@@ -1,11 +1,8 @@
-from __future__ import annotations
 from pydantic import BaseModel
 from typing import Optional
-from .user import UserOut  # Adjust the import path as needed
 
 class ContentBase(BaseModel):
     title: str
-    description: Optional[str] = None
     description: Optional[str] = None
 
 

@@ -19,12 +19,9 @@ class UserOut(UserBase):
         from_attributes = True  # For SQLAlchemy ORM mode
 
 
-from .content import ContentOut  # Make sure this import path is correct
-
 class UserWithRelations(UserOut):
-    contents: Optional[List[ContentOut]] = []  # Use imported ContentOut directly
+    contents: Optional[List["ContentOut"]] = []  # Forward reference (string)
 
 from pydantic import BaseModel
 
 UserWithRelations.model_rebuild()
-
