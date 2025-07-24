@@ -5,8 +5,11 @@ from .content_routes import router as content_router
 from .report_routes import router as report_router
 from .subscription_routes import router as subscription_router
 from .payment_routes import router as payment_router
+from .test_email_routes import router as test_email_router
 
 api_router = APIRouter()
+
+api_router.include_router(test_email_router, prefix="/api/v1/test", tags=["Test Email"])
 
 # Include all routers
 api_router.include_router(health_router, tags=["health"])
