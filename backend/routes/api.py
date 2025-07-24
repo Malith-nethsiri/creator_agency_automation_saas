@@ -9,7 +9,7 @@ from .test_email_routes import router as test_email_router
 
 api_router = APIRouter()
 
-api_router.include_router(test_email_router, prefix="/api/v1/test", tags=["Test Email"])
+api_router.include_router(test_email_router, prefix="/api/v1/test", tags=["Test"])
 
 # Include all routers
 api_router.include_router(health_router, tags=["health"])

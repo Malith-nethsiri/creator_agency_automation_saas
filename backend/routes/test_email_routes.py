@@ -5,9 +5,9 @@ router = APIRouter()
 
 @router.get("/send-test-email")
 def send_test_email():
-    test_email = "your_test_email@gmail.com"  # Change to your email
+    test_email = "your_email@gmail.com"  # Change this to your own email
     subject = "✅ Test Email from Creator Agency SaaS"
-    body = "This is a test email from your SaaS backend. SMTP works fine!"
+    body = "This is a test email. Your SMTP is working perfectly!"
 
     email_service.send_email(test_email, subject, body)
     return {"status": "success", "message": f"Email sent to {test_email}"}
